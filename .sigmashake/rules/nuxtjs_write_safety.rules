@@ -6,7 +6,7 @@ rule nuxtjs-block-unsafe-patterns {
   priority 90
   severity error
   DENY write
-  IF path GLOB "**/*" AND content CONTAINS "UNSAFE_nuxtjs_PATTERN"
+  IF path GLOB "**/*" AND content CONTAINS "v-html="
   MESSAGE "Blocked an unsafe pattern in nuxtjs. Use the recommended best practices for 2025/2026."
 }
 
@@ -14,7 +14,7 @@ rule nuxtjs-force-updated-api {
   enabled true
   priority 80
   severity warning
-  ASK write
-  IF path GLOB "**/*" AND content CONTAINS "OLD_nuxtjs_API"
+  LOG write
+  IF path GLOB "**/*" AND content CONTAINS "asyncData"
   MESSAGE "You are using an outdated API for nuxtjs. Please upgrade to the newer API."
 }
